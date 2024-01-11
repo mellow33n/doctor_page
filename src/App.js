@@ -6,6 +6,7 @@ import './App.css';
 import Calendar from './pages/calendar/calendar';
 import { ukUA as dataGridUkUA } from '@mui/x-data-grid';
 import { ukUA as coreDeukUA } from '@mui/material/locale';
+import RegistrationForm from './pages/registration/registration';
 
 
 
@@ -26,7 +27,8 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme = {theme}>
-      <Calendar/>
+      <RegistrationForm></RegistrationForm>
+      {/* <Calendar/> */}
     </ThemeProvider>
   )
 }
