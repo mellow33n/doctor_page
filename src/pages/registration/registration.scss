@@ -1,0 +1,63 @@
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+/* Загальні стилі для форми */
+form {
+    max-width: 400px;
+    margin: 5px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Адаптивні стилі для елементів форми на екранах шириною до 600px */
+  @media screen and (max-width: 600px) {
+    form {
+      max-width: 100%;
+    }
+  }
+  
+  /* Стилі для міток та інпутів */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+  
+  /* Стилі для кнопки подання */
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Адаптивні стилі для кнопки подання на екранах шириною до 600px */
+  @media screen and (max-width: 600px) {
+    button {
+      width: 100%;
+    }
+  }
+
+/* Приховати стрілки вводу у полях типу "number" */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.error-msg {
+  color: red;
+}
