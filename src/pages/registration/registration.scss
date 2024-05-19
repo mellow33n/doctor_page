@@ -1,8 +1,10 @@
 .reg-form {
     display: flex;
     flex-direction: column;
-    gap: 2vw;
+
 }
+
+
 /* Загальні стилі для форми */
 form {
     max-width: 400px;
@@ -11,6 +13,7 @@ form {
     border: 1px solid #ddd;
     border-radius: 5px;
   }
+
   
   /* Адаптивні стилі для елементів форми на екранах шириною до 600px */
   @media screen and (max-width: 600px) {
@@ -27,7 +30,7 @@ form {
   
   input {
     width: 100%;
-
+    margin-top: 5vw;
     box-sizing: border-box;
   }
   
@@ -60,4 +63,26 @@ input[type="number"] {
 }
 .error-msg {
   color: red;
+  margin: 10px 0;
+}
+.no-error {
+  display: none;
+}
+.form-input {
+  width: 100%;
+}
+.form-div {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 10px 0;
+  border: 0;
+  vertical-align: top;
 }

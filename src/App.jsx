@@ -7,7 +7,16 @@ import Calendar from './pages/calendar/calendar';
 import { ukUA as dataGridUkUA } from '@mui/x-data-grid';
 import { ukUA as coreDeukUA } from '@mui/material/locale';
 import RegistrationForm from './pages/registration/registration';
+import PostRegistrationPage from './pages/registration/registrationSucces';
+import Main from './pages/main/main';
 
+import {
+  BrowserRouter,
+  RouterProvider,
+  createBrowserRouter
+} from "react-router-dom";
+import Routes from './routes/routes';
+import RoutesList from './routes/RoutesList';
 
 
 const theme = createTheme({
@@ -22,13 +31,21 @@ const theme = createTheme({
   ukUA,
   dataGridUkUA,
   coreDeukUA
-})
+});
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main/>,
+  },
+
+])
 
 function App() {
   return (
     <ThemeProvider theme = {theme}>
-      <RegistrationForm></RegistrationForm>
-      {/* <Calendar/> */}
+      <BrowserRouter>
+        <RoutesList/>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }

@@ -14,7 +14,7 @@ export default function CustomRadioGroup (props) {
     setValue(event.target.value);
   };
 
-  return (
+  return <div className='form-div'>
     <Controller
         name={`${radioGroupInfo.name}`}
         control={control}
@@ -34,7 +34,7 @@ export default function CustomRadioGroup (props) {
         )}
       />
     
-  );
+    </div>;
 }
 
 
