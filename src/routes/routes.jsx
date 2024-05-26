@@ -6,6 +6,7 @@ const Registration = lazy(() => import("../pages/registration/registration"));
 const RegistrationSucces = lazy(() =>
   import("../pages/registration/registrationSucces")
 );
+const Login = lazy(() => import("../pages/login/login"));
 const Calendar = lazy(() => import("../pages/calendar/calendar"));
 
 export default function Routes() {
@@ -35,6 +36,10 @@ export default function Routes() {
     {
       path: "calendar",
       element: getComponent(Calendar),
+    },
+    {
+      path: "login",
+      element: getComponent(Login),
     },
 
     {
