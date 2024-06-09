@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { useNavigate } from "react-router";
-
 import { useForm, FormProvider } from "react-hook-form";
 
 import PickDay from "./pickDay";
@@ -13,7 +11,7 @@ export default function Calendar() {
     formState: { errors },
   } = useForm();
   const [currentStep, setCurrentStep] = React.useState(0);
-  const steps = [<PickDay props={{control, errors}}/>];
+  const steps = [<PickDay props={{ control, errors }} />];
 
   const onSubmit = (data) => {
     if (currentStep < steps.length - 1) {
@@ -24,7 +22,7 @@ export default function Calendar() {
   };
 
   return (
-    <FormProvider >
+    <FormProvider>
       <form onSubmit={handleSubmit(onSubmit)}>
         {steps[currentStep]}
         <div className="btn-group">
@@ -33,11 +31,11 @@ export default function Calendar() {
               type="button"
               onClick={() => setCurrentStep(currentStep - 1)}
             >
-              Previous
+              Попередня
             </button>
           )}
           <button type="submit">
-            {currentStep === steps.length - 1 ? "Submit" : "Next"}
+            {currentStep === steps.length - 1 ? "Відправити" : "Наступна"}
           </button>
         </div>
       </form>

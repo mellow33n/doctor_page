@@ -8,6 +8,8 @@ const RegistrationSucces = lazy(() =>
 );
 const Login = lazy(() => import("../pages/login/login"));
 const Calendar = lazy(() => import("../pages/calendar/calendar"));
+const AdminDashboard = lazy(() => import("../pages/admin/adminDashboard"));
+const ScheduleSettings = lazy(() => import("../pages/admin/settings/scheduleSettings"));
 
 export default function Routes() {
 
@@ -41,10 +43,17 @@ export default function Routes() {
       path: "login",
       element: getComponent(Login),
     },
-
     {
       path: "*",
       element: getComponent(NotFound),
+    },
+    {
+      path: "admin",
+      element: getComponent(AdminDashboard)
+    },
+    {
+      path: "admin/settings",
+      element: getComponent(ScheduleSettings)
     },
   ];
   return router;

@@ -34,7 +34,6 @@ function ServerDay(props) {
 export default function PickDay({ props }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [disabledDays, setDisableDays] = React.useState([1, 2, 15]);
-  console.log(props);
 
   const maxDaysNumber = 60;
 

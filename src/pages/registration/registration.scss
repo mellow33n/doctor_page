@@ -86,3 +86,10 @@ input[type="number"] {
   border: 0;
   vertical-align: top;
 }
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}

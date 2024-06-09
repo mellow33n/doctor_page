@@ -53,7 +53,6 @@ const RegistrationForm = () => {
         navigate('/registration/succes')
         return
       }
-      console.log(newUser);
       
       const is500Error = newUser.response.status === 500 ?? false;
       if (is500Error) {
