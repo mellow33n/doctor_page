@@ -1,7 +1,8 @@
 import "./secondStep.scss";
-import React, { useState, useEffect } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import React, { useState } from "react";
 import { FormControl, Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { setHolidaysRegular } from "../../../../store/Reducers/scheduleSettingsSlice";
 
 export default function SecondStep() {
   const initialDays = [
@@ -13,65 +14,56 @@ export default function SecondStep() {
     { name: "Субота", isSelected: false, number: 6 },
     { name: "Неділя", isSelected: false, number: 0 },
   ];
-
   const [days, setDays] = useState(initialDays);
-  const { control, setValue } = useFormContext();
-
+  const dispatch = useDispatch();
+  
   const handleClick = (index) => {
     const newDays = days.map((day, i) =>
       i === index ? { ...day, isSelected: !day.isSelected } : day
     );
     setDays(newDays);
+    dispatch(setHolidaysRegular(newDays));
   };
-
-  useEffect(() => {
-    const selectedDays = days.filter(day => day.isSelected).map(day => day.number);
-    setValue("holidaysRegular", selectedDays);
-  }, [days, setValue]);
 
   return (
     <div className="form-div">
-      <Controller
-        name="holidaysRegular"
-        control={control}
-        render={({ field }) => (
-          <FormControl {...field}>
-            <p>Клікніть на день, щоб перенести його в протилежну категорію</p>
-            <h3>Робочі дні</h3>
-            <div id="workday" className="holidays-btn">
-              {days.map((day, index) =>
-                !day.isSelected && (
-                  <Button
-                    type="button"
-                    variant="contained"
-                    color="warning"
-                    onClick={() => handleClick(index)}
-                    key={day.number}
-                  >
-                    {day.name}
-                  </Button>
-                )
-              )}
-            </div>
-            <h3>Вихідні</h3>
-            <div id="holiday" className="holidays-btn">
-              {days.map((day, index) =>
-                day.isSelected && (
-                  <Button
-                    type="button"
-                    variant="contained"
-                    color="success"
-                    onClick={() => handleClick(index)}
-                    key={day.number}
-                  >
-                    {day.name}
-                  </Button>
-                )
-              )}
-            </div>
-          </FormControl>
-        )}
-      />
+      <FormControl>
+        <p>Клікніть на день, щоб перенести його в протилежну категорію</p>
+        <h3>Робочі дні</h3>
+        <div id="workday" className="holidays-btn">
+          {days.map(
+            (day, index) =>
+              !day.isSelected && (
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="warning"
+                  onClick={() => handleClick(index)}
+                  key={day.number}
+                >
+                  {day.name}
+                </Button>
+              )
+          )}
+        </div>
+        <h3>Вихідні</h3>
+        <div id="holiday" className="holidays-btn">
+          {days.map(
+            (day, index) =>
+              day.isSelected && (
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="success"
+                  onClick={() => handleClick(index)}
+                  key={day.number}
+                >
+                  {day.name}
+                </Button>
+              )
+          )}
+        </div>
+      </FormControl>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 import FirstStep from "./schedule_pages/firstStep";
 import SecondStep from "./schedule_pages/secondStep";
 
 export default function ScheduleSettings() {
-  const methods = useForm();
+  const { handleSubmit } = useForm();
   const [currentStep, setCurrentStep] = useState(0);
   const steps = [<FirstStep />, <SecondStep />];
 
@@ -18,8 +18,7 @@ export default function ScheduleSettings() {
   };
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="reg-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="reg-form">
         <h3>Форма настройки графіку прийому пацієнтів</h3>
         {steps[currentStep]}
         <div className="btn-group">
@@ -38,6 +37,5 @@ export default function ScheduleSettings() {
           </Button>
         </div>
       </form>
-    </FormProvider>
   );
 }

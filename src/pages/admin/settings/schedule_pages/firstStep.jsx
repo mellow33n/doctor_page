@@ -1,14 +1,12 @@
-import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { InputLabel, Input, FormControl } from "@mui/material";
+import { useState } from "react";
+import { InputLabel, Input, FormControl, FormHelperText } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { setMaxDaysRange } from "../../../../store/Reducers/scheduleSettingsSlice";
 
 export default function FirstStep() {
-  const [inputValue, setValue] = React.useState("");
-  const { control } = useFormContext();
-
-  const handleInputChange = React.useCallback((event) => {
-    setValue(event.target.value);
-  }, []);
+  const [inputValue, setValue] = useState("");
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   const numberValidation = {
     required: "Поле не може бути пустим",
@@ -18,29 +16,35 @@ export default function FirstStep() {
     },
   };
 
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setValue(value);
+
+    if (!value) {
+      setError(numberValidation.required);
+    } else if (!numberValidation.pattern.value.test(value)) {
+      setError(numberValidation.pattern.message);
+    } else {
+      setError("");
+      dispatch(setMaxDaysRange(value));
+    }
+  };
+
   return (
     <div className="form-div">
-      <Controller
-        name="maxDaysRange"
-        control={control}
-        rules={numberValidation}
-        render={({ field, fieldState: { error }}) => (
-          <FormControl {...field}>
-            <InputLabel htmlFor={`input-adornment-maxDaysRange`}>
-              {"Вести запис на N днів вперед"}
-            </InputLabel>
-            <Input
-              id={`input-adornment-maxDaysRange`}
-              type={"number"}
-              placeholder="Введіть числo днів"
-              value={inputValue}
-              onChange={handleInputChange}
-              error={!!error}
-            />
-            <p className="error-msg">{error ?  error.message  : null}</p>
-          </FormControl>
-        )}
-      />
+      <FormControl error={!!error}>
+        <InputLabel htmlFor="input-adornment-maxDaysRange">
+          Вести запис на N днів вперед
+        </InputLabel>
+        <Input
+          id="input-adornment-maxDaysRange"
+          type="number"
+          placeholder="Введіть числo днів"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        {error && <FormHelperText>{error}</FormHelperText>}
+      </FormControl>
     </div>
   );
 }
